@@ -18,13 +18,17 @@
 </form>
 
 <p id="result"></p>
+<div id="imageContainer">
+    <img id="plantImage" src="plant.jpg" alt="Plant Image" style="width:200px; height:200px;" onclick="nextImage()">
+</div>
+
 
 <script>
-    // Global variables
+
     let attempts = 0;
     let wrong = 0;
 
-    // Function to process color guess
+    
     function processColor() {
         let secretColor = document.getElementById("secretColor").value;
         let guessedColor = document.getElementById("colorGuess").value;
@@ -40,6 +44,27 @@
 
         document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
     }
+    
+let showing = 1;
+
+function nextImage() {
+    let image = document.getElementById("plantImage");
+    switch (showing) {
+        case 1:
+            image.src = "plant1.jpg";
+            showing++;
+            break;
+        case 2:
+            image.src = "plant2.jpg";
+            showing++;
+            break;
+        case 3:
+            image.src = "plant3.jpg";
+            showing = 1; // Reset to the first image
+            break;
+    }
+}
+
 </script>
 
 </body>
