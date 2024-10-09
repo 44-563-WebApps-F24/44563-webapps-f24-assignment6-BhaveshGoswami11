@@ -24,11 +24,8 @@
 
 
 <script>
-
     let attempts = 0;
     let wrong = 0;
-
-    
     function processColor() {
         let secretColor = document.getElementById("secretColor").value;
         let guessedColor = document.getElementById("colorGuess").value;
@@ -44,18 +41,16 @@
 
         document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
     }
-    
 let showing = 1;
-
 function nextImage() {
     let image = document.getElementById("plantImage");
     switch (showing) {
         case 1:
-            image.src = "plant1.jpg";
+            image.src = "plant.jpg";
             showing++;
             break;
         case 2:
-            image.src = "plant2.jpg";
+            image.src = "plant2.jpeg";
             showing++;
             break;
         case 3:
