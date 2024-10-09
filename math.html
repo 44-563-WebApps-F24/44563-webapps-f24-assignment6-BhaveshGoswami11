@@ -1,69 +1,92 @@
 <!DOCTYPE html>
-<html>
- <head>
-    <title>Math Computation</title>
- </head>
-<body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Computation - Bhavesh Goswami figures out</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
 
-<h1>Bhavesh Goswami figures out</h1>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Bhavesh Goswami figures out</h1>
 
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+        <div class="card shadow p-4 mb-4">
+            <h5 class="card-title">Form Section</h5>
+            <form>
+                <div class="form-group">
+                    <label for="form1_age">What is your age:</label>
+                    <input type="number" class="form-control" id="form1_age" name="form1_age" min="10" max="50" step="2" value="30">
+                </div>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+                <div class="form-group">
+                    <label for="form1_nick">What is your nickname:</label>
+                    <input type="text" class="form-control" id="form1_nick" name="form1_nick" autofocus>
+                </div>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
+                <button type="button" class="btn btn-primary" onclick="resolveForm()">Get values from form</button>
+            </form>
 
+            <p id="result" class="mt-3">This text will be replaced</p>
+        </div>
 
-<p id="result">This text will be replaced </p>
+        <div class="card shadow p-4">
+            <h5 class="card-title">Math Computation Section</h5>
+            <form>
+                <div class="form-group">
+                    <label for="number1">Enter a number:</label>
+                    <input type="number" class="form-control" id="number1" value="2">
+                </div>
 
-<form>
-    <label for="number1">Enter a number:</label>
-    <input type="number" id="number1" value="2"><br><br>
+                <div class="form-group">
+                    <label for="number2">Enter another number:</label>
+                    <input type="number" class="form-control" id="number2" value="12">
+                </div>
 
-    <label for="number2">Enter another number:</label>
-    <input type="number" id="number2" value="12"><br><br>
+                <button type="button" class="btn btn-success" onclick="powerSum()">Compute</button>
+            </form>
 
-    <button type="button" onclick="powerSum()">Compute</button>
-</form>
+            <p id="mathResult" class="mt-3"></p>
+        </div>
+    </div>
 
-<p id="mathResult"></p>
+    <!-- JavaScript for form and math functions -->
+    <script>
+        function powerSum() {
+            // Get the values from the input fields
+            let first = parseInt(document.getElementById("number1").value);
+            let second = parseInt(document.getElementById("number2").value);
+            let sum = 0;
 
-<script>
-    function powerSum() {
-        // Get the values from the input fields
-        let first = parseInt(document.getElementById("number1").value);
-        let second = parseInt(document.getElementById("number2").value);
-        let sum = 0;
+            // Loop to compute the sum of powers
+            for (let i = 0; i < first; i++) {
+                sum += Math.pow(second, i);
+            }
 
-        // Loop to compute the sum of powers
-        for (let i = 0; i < first; i++) {
-            sum += Math.pow(second, i);
+            // Display the result
+            document.getElementById("mathResult").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}`;
         }
 
-        // Display the result
-        document.getElementById("mathResult").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}`;
-    }
-</script>
-<script> 
+        function resolveForm() {
+            console.log("Getting form values");
+            let age = document.getElementById("form1_age").value;
+            let nick = document.getElementById("form1_nick").value;
+            let confirmed = confirm("Are these the values? " + age + " and " + nick);
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
+            let out = document.getElementById("result");
+            if (confirmed) {
+                out.innerHTML = "Values were confirmed";
+            } else {
+                out.innerHTML = "Values were not confirmed";
+            }
+        }
+    </script>
+
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
-</html> 
+</html>

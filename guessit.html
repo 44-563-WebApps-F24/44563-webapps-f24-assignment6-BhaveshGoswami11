@@ -1,66 +1,88 @@
 <!DOCTYPE html>
-<html>
- <head>
-    <title>Exploring Basic JavaScript</title>
-    <h1>Guess the color</h1>
- </head>
-<body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Basic JavaScript - Guess the Color</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
 
-<h2>Getting input</h2>
-<form>
-    <label for="secretColor">Guess the color:</label>
-    <input type="password" id="secretColor" value="Red"><br><br>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Guess the Color</h1>
 
-    <label for="colorGuess">Enter a guess:</label>
-    <input type="text" id="colorGuess"><br><br>
+        <div class="card shadow p-4 mb-4">
+            <h5 class="card-title">Color Guessing Game</h5>
+            <form>
+                <div class="form-group">
+                    <label for="secretColor">Guess the color:</label>
+                    <input type="password" class="form-control" id="secretColor" value="Red">
+                </div>
 
-    <button type="button" onclick="processColor()">Check the color</button>
-</form>
+                <div class="form-group">
+                    <label for="colorGuess">Enter a guess:</label>
+                    <input type="text" class="form-control" id="colorGuess">
+                </div>
 
-<p id="result"></p>
-<div id="imageContainer">
-    <img id="plantImage" src="plant.jpg" alt="Plant Image" style="width:200px; height:200px;" onclick="nextImage()">
-</div>
+                <button type="button" class="btn btn-primary" onclick="processColor()">Check the color</button>
+            </form>
 
+            <p id="result" class="mt-3"></p>
+        </div>
 
-<script>
-    let attempts = 0;
-    let wrong = 0;
-    function processColor() {
-        let secretColor = document.getElementById("secretColor").value;
-        let guessedColor = document.getElementById("colorGuess").value;
+        <div class="card shadow p-4 text-center">
+            <h5 class="card-title">Image Viewer</h5>
+            <div id="imageContainer" class="d-flex justify-content-center">
+                <img id="plantImage" src="plant.jpg" alt="Plant Image" class="img-thumbnail" style="width:200px; height:200px;" onclick="nextImage()">
+            </div>
+        </div>
+    </div>
 
-        attempts++;
+    <!-- JavaScript for game logic and image switching -->
+    <script>
+        let attempts = 0;
+        let wrong = 0;
 
-        if (secretColor.toLowerCase() !== guessedColor.toLowerCase()) {
-            wrong++;
-            alert("That was not it");
-        } else {
-            alert("You got it!");
+        function processColor() {
+            let secretColor = document.getElementById("secretColor").value;
+            let guessedColor = document.getElementById("colorGuess").value;
+
+            attempts++;
+
+            if (secretColor.toLowerCase() !== guessedColor.toLowerCase()) {
+                wrong++;
+                alert("That was not it");
+            } else {
+                alert("You got it!");
+            }
+
+            document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
         }
 
-        document.getElementById("result").innerHTML = `Attempts: ${attempts} | Wrong: ${wrong}`;
-    }
-let showing = 1;
-function nextImage() {
-    let image = document.getElementById("plantImage");
-    switch (showing) {
-        case 1:
-            image.src = "plant.jpg";
-            showing++;
-            break;
-        case 2:
-            image.src = "plant2.jpeg";
-            showing++;
-            break;
-        case 3:
-            image.src = "plant3.jpg";
-            showing = 1; // Reset to the first image
-            break;
-    }
-}
+        let showing = 1;
+        function nextImage() {
+            let image = document.getElementById("plantImage");
+            switch (showing) {
+                case 1:
+                    image.src = "plant.jpg";
+                    showing++;
+                    break;
+                case 2:
+                    image.src = "plant2.jpeg";
+                    showing++;
+                    break;
+                case 3:
+                    image.src = "plant3.jpg";
+                    showing = 1; // Reset to the first image
+                    break;
+            }
+        }
+    </script>
 
-</script>
-
+    <!-- Bootstrap JS and dependencies (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>
