@@ -12,6 +12,7 @@
     <div class="container mt-5">
         <h1 class="text-center mb-4">Bhavesh Goswami figures out</h1>
 
+        <!-- Form Section -->
         <div class="card shadow p-4 mb-4">
             <h5 class="card-title">Form Section</h5>
             <form>
@@ -28,10 +29,11 @@
                 <button type="button" class="btn btn-primary" onclick="resolveForm()">Get values from form</button>
             </form>
 
-            <p id="result" class="mt-3">This text will be replaced</p>
+            <p id="result" class="mt-3 alert alert-info">This text will be replaced</p>
         </div>
 
-        <div class="card shadow p-4">
+        <!-- Math Computation Section -->
+        <div class="card shadow p-4 mb-4">
             <h5 class="card-title">Math Computation Section</h5>
             <form>
                 <div class="form-group">
@@ -47,25 +49,61 @@
                 <button type="button" class="btn btn-success" onclick="powerSum()">Compute</button>
             </form>
 
-            <p id="mathResult" class="mt-3"></p>
+            <p id="mathResult" class="mt-3 alert alert-success"></p>
+        </div>
+
+        <!-- Radio Button Group for Calculations -->
+        <div class="card shadow p-4">
+            <h5 class="card-title">Radio Button Calculations</h5>
+            <form>
+                <div class="form-group">
+                    <label for="firstNumber">Enter first number:</label>
+                    <input type="number" class="form-control" id="firstNumber" value="10">
+                </div>
+
+                <div class="form-group">
+                    <label for="secondNumber">Enter second number:</label>
+                    <input type="number" class="form-control" id="secondNumber" value="20">
+                </div>
+
+                <h6>Select an operation:</h6>
+                <div class="form-check">
+                    <input type="radio" id="max" name="operation" value="max" class="form-check-input" onclick="processRadio()">
+                    <label for="max" class="form-check-label">Max</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" id="min" name="operation" value="min" class="form-check-input" onclick="processRadio()">
+                    <label for="min" class="form-check-label">Min</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" id="avg" name="operation" value="avg" class="form-check-input" onclick="processRadio()">
+                    <label for="avg" class="form-check-label">Average</label>
+                </div>
+
+                <div class="form-check">
+                    <input type="radio" id="geo" name="operation" value="geo" class="form-check-input" onclick="processRadio()">
+                    <label for="geo" class="form-check-label">Geometric Mean</label>
+                </div>
+            </form>
+            
+            <p id="calcResult" class="mt-3 alert alert-info">The result of the calculation will be displayed here.</p>
         </div>
     </div>
 
     <!-- JavaScript for form and math functions -->
     <script>
         function powerSum() {
-            // Get the values from the input fields
             let first = parseInt(document.getElementById("number1").value);
             let second = parseInt(document.getElementById("number2").value);
             let sum = 0;
 
-            // Loop to compute the sum of powers
             for (let i = 0; i < first; i++) {
                 sum += Math.pow(second, i);
             }
 
-            // Display the result
-            document.getElementById("mathResult").innerHTML = `Sum of ${first} powers with base ${second} is ${sum}`;
+            document.getElementById("mathResult").innerHTML = `Sum of the first ${first} powers with base ${second} is ${sum}`;
         }
 
         function resolveForm() {
@@ -81,9 +119,35 @@
                 out.innerHTML = "Values were not confirmed";
             }
         }
+
+        function processRadio() {
+            let first = parseFloat(document.getElementById("firstNumber").value);
+            let second = parseFloat(document.getElementById("secondNumber").value);
+
+            let operation = document.querySelector('input[name="operation"]:checked').value;
+            let result = 0;
+            let operationName = '';
+
+            if (operation === 'max') {
+                result = Math.max(first, second);
+                operationName = 'Maximum';
+            } else if (operation === 'min') {
+                result = Math.min(first, second);
+                operationName = 'Minimum';
+            } else if (operation === 'avg') {
+                result = (first + second) / 2;
+                operationName = 'Average';
+            } else if (operation === 'geo') {
+                result = Math.sqrt(first * second);
+                operationName = 'Geometric Mean';
+            }
+
+            document.getElementById("calcResult").innerHTML = 
+                `Computed ${operationName} with values ${first} and ${second}, result is ${result}`;
+        }
     </script>
 
-    <!-- Bootstrap JS and dependencies (optional) -->
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
